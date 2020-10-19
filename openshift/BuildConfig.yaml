@@ -16,7 +16,7 @@ spec:
   runPolicy: Serial
   source:
     git:
-      uri: https://github.com/msolberg/was-demo.git
+      uri: https://github.com/kenmoini/was-demo.git
     type: Git
   strategy:
     type: Docker
