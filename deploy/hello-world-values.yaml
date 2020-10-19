@@ -5,7 +5,7 @@ image:
 ingress:
   enabled: true
   path: /demo/
-  rewriteTarget: /
+  rewriteTarget: /HelloWorld/hello
 
 configProperties:
   configMapName: my-config-properties
