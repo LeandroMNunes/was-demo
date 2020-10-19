@@ -37,7 +37,7 @@ spec:
   runPolicy: Serial
   source:
     git:
-      uri: https://github.com/msolberg/was-demo.git
+      uri: https://github.com/kenmoini/was-demo.git
     type: Git
   strategy:
     type: Docker
@@ -52,9 +52,9 @@ spec:
 For a local binary build, the `oc new-build` command can be used. Create a directory with the EAR file, the WAS configuration files, and a Dockerfile at the top level. (Or use this repository as a template.) Then, create the build config and start the build.
 
 ```
-$ git clone https://github.com/msolberg/was-demo.git
-$ oc new-build --strategy docker --binary --docker-image ibmcom/websphere-traditional:latest-ubi --name <APP_NAME>
-$ oc start-build <APP_NAME> --from-dir was-demo --follow
+$ git clone https://github.com/kenmoini/was-demo.git
+$ oc new-build --strategy docker --binary --docker-image ibmcom/websphere-traditional:latest-ubi --name was-demo
+$ oc start-build was-demo --from-dir was-demo --follow
 ```
 
 ## Deploying the application image on OpenShift
@@ -67,3 +67,16 @@ $ oc expose svc/was-demo --port 9080
 
 The Dockerfile included in this repository exposes ports 9043, 9080, and 9443.
 
+OH AND ONE LAST THING - The HelloWorld demo is available at `ROUTE_HERE/HelloWorld/Hello/` and you must access this path manually or else you will just see a WAS error :)
+
+## Deploying the Prebuilt Container from Docker Hub
+
+You can simply use the `kenmoini/was-demo` container from Docker Hub if you'd like to skip the build.  There is an OpenShift Template available in `openshift-prebuilt` if you'd like to include all the needed objects at deployment:
+
+```
+oc new-project was-demo
+oc apply -f openshift-prebuilt/Template.yaml
+oc get routes
+```
+
+And again, access the HelloWorld applet at `ROUTE_HERE/HelloWorld/Hello/`
